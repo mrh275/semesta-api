@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BiodataController;
 use App\Http\Controllers\API\KelasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/kelas', [KelasController::class, 'store']);
 Route::get('/kelas', [KelasController::class, 'getKelas']);
+
+Route::get('/siswa', [BiodataController::class, 'getAllSiswa']);
