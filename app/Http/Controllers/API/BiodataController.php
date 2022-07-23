@@ -31,10 +31,14 @@ class BiodataController extends Controller
             }
         }
 
-        $biodata = Biodata::paginate(($limit) ? $limit : 10);
+        $biodata = Biodata::with(['kelas']);
+
+        if ($nama) {
+            $biodata->where('nama', 'like', '%' . $nama . '%');
+        }
 
         return ResponseFormatter::success(
-            $biodata,
+            $biodata->paginate(($limit) ? $limit : 10),
             "Berhasil mengambil data"
         );
     }
