@@ -13,6 +13,7 @@ class BiodataController extends Controller
     {
         $nisn = $request->input('nisn');
         $nama = $request->input('nama');
+        $limit = $request->input('limit');
 
         if ($nisn) {
             $biodata = Biodata::where('nisn', $nisn)->with(['kelas'])->first();
@@ -29,5 +30,12 @@ class BiodataController extends Controller
                 );
             }
         }
+
+        $biodata = Biodata::paginate(($limit) ? $limit : 10);
+
+        return ResponseFormatter::success(
+            $biodata,
+            "Berhasil mengambil data"
+        );
     }
 }
