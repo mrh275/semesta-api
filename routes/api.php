@@ -19,6 +19,7 @@ use App\Http\Controllers\API\BiodataController;
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+Route::get('/user', [UserController::class, 'fetch']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
