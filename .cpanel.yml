@@ -1,0 +1,5 @@
+---
+deployment:
+tasks:
+  - export DEPLOYPATH=/home/pzdxusld/api.muhamadramdani.my.id
+  - /bin/cp -r * $DEPLOYPATH
