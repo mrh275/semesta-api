@@ -5,6 +5,16 @@
 
     RewriteEngine On
 
+    # Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Use PHP81 as default
+    AddHandler application/x-httpd-php81 .php
+    <IfModule mod_suphp.c>
+        suPHP_ConfigPath /opt/php81/lib
+    </IfModule>
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
