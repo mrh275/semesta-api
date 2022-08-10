@@ -53,11 +53,11 @@ class UserController extends Controller
 
             $request->validate([
                 'username' => 'required',
-                'password' => ['required']
+                'password' => 'required'
             ]);
 
+
             $credentials = request(['username', 'password']);
-            // dd($credentials);
 
             if (!Auth::attempt($credentials)) {
                 return ResponseFormatter::error([
@@ -66,8 +66,6 @@ class UserController extends Controller
             }
 
             $user = User::where('username', $request->username)->first();
-
-
 
             if (!Hash::check($request->password, $user->password)) {
                 throw new \Exception('Invalid credentials');
