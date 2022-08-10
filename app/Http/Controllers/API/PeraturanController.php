@@ -27,4 +27,14 @@ class PeraturanController extends Controller
             'result' => $result
         ], 'Data added successfully');
     }
+
+    public function allCategory()
+    {
+        $allCategory = CategoryPeraturan::all();
+
+        return ResponseFormatter::success(
+            $allCategory,
+            'Kategori Peraturan ditemukan'
+        );
+    }
 }
