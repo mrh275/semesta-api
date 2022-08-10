@@ -33,3 +33,5 @@ Route::get('/siswa', [BiodataController::class, 'getAllSiswa']);
 
 Route::post('/tambah-kategori-peraturan', [PeraturanController::class, 'addCategoryPeraturan']);
 Route::get('/kategori-peraturan', [PeraturanController::class, 'allCategory']);
+
+Route::post('/tambah-peraturan', [PeraturanController::class, 'addPeraturan']);
