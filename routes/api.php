@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\KelasController;
 use App\Http\Controllers\API\BiodataController;
+use App\Http\Controllers\API\PeraturanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::post('/kelas', [KelasController::class, 'store']);
 Route::get('/kelas', [KelasController::class, 'getKelas']);
 
 Route::get('/siswa', [BiodataController::class, 'getAllSiswa']);
+
+Route::post('/tambah-kategori-peraturan', [PeraturanController::class, 'addCategoryPeraturan']);
