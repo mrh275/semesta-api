@@ -23,8 +23,6 @@ class UserController extends Controller
                 'role' => 'required'
             ]);
 
-            // dd($credentials);
-
             User::create([
                 'username' => $request->username,
                 'name' => $request->name,
