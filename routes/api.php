@@ -20,19 +20,18 @@ use App\Http\Controllers\API\PeraturanController;
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
-Route::get('/user', [UserController::class, 'fetch']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', [UserController::class, 'fetch']);
+
+    Route::post('/kelas', [KelasController::class, 'store']);
+    Route::get('/kelas', [KelasController::class, 'getKelas']);
+
+    Route::get('/siswa', [BiodataController::class, 'getAllSiswa']);
+
+    Route::post('/tambah-kategori-peraturan', [PeraturanController::class, 'addCategoryPeraturan']);
+    Route::get('/kategori-peraturan', [PeraturanController::class, 'allCategory']);
+
+    Route::post('/tambah-peraturan', [PeraturanController::class, 'addPeraturan']);
+    Route::get('/peraturan', [PeraturanController::class, 'allPeraturan']);
 });
-
-Route::post('/kelas', [KelasController::class, 'store']);
-Route::get('/kelas', [KelasController::class, 'getKelas']);
-
-Route::get('/siswa', [BiodataController::class, 'getAllSiswa']);
-
-Route::post('/tambah-kategori-peraturan', [PeraturanController::class, 'addCategoryPeraturan']);
-Route::get('/kategori-peraturan', [PeraturanController::class, 'allCategory']);
-
-Route::post('/tambah-peraturan', [PeraturanController::class, 'addPeraturan']);
-Route::get('/peraturan', [PeraturanController::class, 'allPeraturan']);
