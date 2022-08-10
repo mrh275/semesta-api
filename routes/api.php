@@ -35,3 +35,4 @@ Route::post('/tambah-kategori-peraturan', [PeraturanController::class, 'addCateg
 Route::get('/kategori-peraturan', [PeraturanController::class, 'allCategory']);
 
 Route::post('/tambah-peraturan', [PeraturanController::class, 'addPeraturan']);
+Route::get('/peraturan', [PeraturanController::class, 'allPeraturan']);
