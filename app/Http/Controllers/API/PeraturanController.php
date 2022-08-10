@@ -59,4 +59,14 @@ class PeraturanController extends Controller
             'result' => $result
         ], 'Data added successfully');
     }
+
+    public function allPeraturan()
+    {
+        $allPeraturan = ListPeraturan::with('categoryPeraturan')->get();
+
+        return ResponseFormatter::success(
+            $allPeraturan,
+            'Kategori Peraturan ditemukan'
+        );
+    }
 }
