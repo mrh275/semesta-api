@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\KelasController;
 use App\Http\Controllers\API\BiodataController;
+use App\Http\Controllers\API\DaftarPelanggaranController;
 use App\Http\Controllers\API\PeraturanController;
 
 /*
@@ -29,9 +30,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/siswa', [BiodataController::class, 'getAllSiswa']);
 
-    Route::post('/tambah-kategori-peraturan', [PeraturanController::class, 'addCategoryPeraturan']);
-    Route::get('/kategori-peraturan', [PeraturanController::class, 'allCategory']);
+    Route::post('/bk/tambah-kategori-peraturan', [PeraturanController::class, 'addCategoryPeraturan']);
+    Route::get('/bk/kategori-peraturan', [PeraturanController::class, 'allCategory']);
 
-    Route::post('/tambah-peraturan', [PeraturanController::class, 'addPeraturan']);
-    Route::get('/peraturan', [PeraturanController::class, 'allPeraturan']);
+    Route::post('/bk/tambah-peraturan', [PeraturanController::class, 'addPeraturan']);
+    Route::get('/bk/peraturan', [PeraturanController::class, 'allPeraturan']);
+
+    Route::post('/bk/tambah-pelanggaran', [DaftarPelanggaranController::class, 'addPelanggaran']);
 });
