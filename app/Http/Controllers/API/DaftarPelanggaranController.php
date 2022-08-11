@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\DaftarPelanggaran;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class DaftarPelanggaranController extends Controller
 {
     public function addPelanggaran(Request $request)
@@ -40,15 +42,19 @@ class DaftarPelanggaranController extends Controller
     public function allPelanggaran(Request $request)
     {
         $nisn = $request->input('nisn');
-        $kelas = $request->input('kelas_id');
+        $nama = $request->input('nama');
 
         $allPelanggaran = DaftarPelanggaran::query();
 
         if ($nisn) {
             $allPelanggaran->where('nisn', $nisn);
-        } else {
-            $allPelanggaran->with(['kelas', 'peraturan']);
         }
+
+        if ($nama) {
+            $allPelanggaran->where('nama', 'like', '%' . $nama . '%');
+        }
+
+        $allPelanggaran->with(['kelas', 'peraturan']);
 
         return ResponseFormatter::success(
             $allPelanggaran->paginate(10),
