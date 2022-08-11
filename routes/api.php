@@ -37,4 +37,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/bk/peraturan', [PeraturanController::class, 'allPeraturan']);
 
     Route::post('/bk/tambah-pelanggaran', [DaftarPelanggaranController::class, 'addPelanggaran']);
+    Route::get('/bk/daftar-pelanggaran', [DaftarPelanggaranController::class, 'allPelanggaran']);
 });
