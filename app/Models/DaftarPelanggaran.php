@@ -11,6 +11,8 @@ class DaftarPelanggaran extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
