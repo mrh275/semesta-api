@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('daftar_pelanggarans', function (Blueprint $table) {
             $table->id();
-            $table->integer('nisn');
+            $table->bigInteger('nisn');
+            $table->string('nama');
             $table->integer('kelas_id');
             $table->integer('peraturan_id');
             $table->integer('poin');
