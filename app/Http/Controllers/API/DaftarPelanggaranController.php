@@ -14,6 +14,7 @@ class DaftarPelanggaranController extends Controller
 
         $request->validate([
             'nisn' => 'required',
+            'nama' => 'required',
             'kelas_id' => 'required',
             'peraturan_id' => 'required',
             'poin' => 'required',
@@ -22,6 +23,7 @@ class DaftarPelanggaranController extends Controller
 
         DaftarPelanggaran::create([
             'nisn' => $request->nisn,
+            'nama' => $request->nama,
             'kelas_id' => $request->kelas_id,
             'peraturan_id' => $request->peraturan_id,
             'poin' => $request->poin,
@@ -33,5 +35,24 @@ class DaftarPelanggaranController extends Controller
         return ResponseFormatter::success([
             'result' => $result
         ], 'Data berhasil ditambahkan');
+    }
+
+    public function allPelanggaran(Request $request)
+    {
+        $nisn = $request->input('nisn');
+        $kelas = $request->input('kelas_id');
+
+        $allPelanggaran = DaftarPelanggaran::query();
+
+        if ($nisn) {
+            $allPelanggaran->where('nisn', $nisn);
+        } else {
+            $allPelanggaran->with(['kelas', 'peraturan']);
+        }
+
+        return ResponseFormatter::success(
+            $allPelanggaran->paginate(10),
+            'Data Pelanggaran berhasil diambil'
+        );
     }
 }
