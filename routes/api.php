@@ -6,6 +6,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\KelasController;
 use App\Http\Controllers\API\BiodataController;
 use App\Http\Controllers\API\DaftarPelanggaranController;
+use App\Http\Controllers\API\KisiKisiController;
 use App\Http\Controllers\API\PeraturanController;
 
 /*
@@ -39,3 +40,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/bk/tambah-pelanggaran', [DaftarPelanggaranController::class, 'addPelanggaran']);
     Route::get('/bk/daftar-pelanggaran', [DaftarPelanggaranController::class, 'allPelanggaran']);
 });
+
+Route::get('/kisi-kisi', [KisiKisiController::class, 'index']);
