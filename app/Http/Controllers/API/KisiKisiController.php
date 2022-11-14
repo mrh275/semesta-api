@@ -16,7 +16,8 @@ class KisiKisiController extends Controller
     public function index()
     {
         $dataMapel = KisiKisi::all();
-        return response()->json($dataMapel);
+        $jsonMapel = json_encode($dataMapel);
+        return $jsonMapel;
     }
 
     /**
