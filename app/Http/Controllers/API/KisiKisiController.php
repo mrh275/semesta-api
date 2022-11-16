@@ -27,15 +27,18 @@ class KisiKisiController extends Controller
      */
     public function create(Request $request)
     {
-        $files = $request->file('tmpFiles');
-        if (count($files) > 1) {
-            foreach ($files as $item) {
-                $item->move(public_path('assets/kisi-kisi/pas2022/'), $item->getClientOriginalName());
-            }
-        } else {
-            $files[0]->move(public_path('/assets/kisi-kisi/pas2022/'), $files->getClientOriginalName());
-        }
-        return 'Upload Successfully!';
+        $files = $request->file('fileMapel');
+        $newName = $request->input('slug');
+        $files[0]->move(public_path('/assets/kisi-kisi/pas2022/'), $newName);
+
+        KisiKisi::create([
+            'mapel' => $request->input('mapel'),
+            'kelas' => $request->input('kelas'),
+            'status' => $request->input('status'),
+            'slug' => $request->input('slug')
+        ]);
+
+        return 'Kisi-kisi uploaded successfully!';
     }
 
     /**
