@@ -42,3 +42,4 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/kisi-kisi', [KisiKisiController::class, 'index']);
+Route::post('/upload-kisi-kisi', [KisiKisiController::class, 'create']);
