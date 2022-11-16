@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\KisiKisi;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class KisiKisiController extends Controller
 {
@@ -25,9 +25,17 @@ class KisiKisiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $files = $request->file('tmpFiles');
+        if (count($files) > 1) {
+            foreach ($files as $item) {
+                $item->move(public_path('assets/kisi-kisi/pas2022/'), $item->getClientOriginalName());
+            }
+        } else {
+            $files[0]->move(public_path('/assets/kisi-kisi/pas2022/'), $files->getClientOriginalName());
+        }
+        return 'Upload Successfully!';
     }
 
     /**
