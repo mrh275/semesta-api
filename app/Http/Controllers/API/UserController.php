@@ -35,8 +35,8 @@ class UserController extends Controller
             $tokenResult = $user->createToken('authToken')->plainTextToken;
 
             return ResponseFormatter::success([
-                'access_token' => $tokenResult,
-                'token_type' => 'Bearer',
+                'accessToken' => $tokenResult,
+                'tokenType' => 'Bearer',
                 'user' => $user,
             ], 'User registered successfully');
         } catch (Exception $error) {
@@ -74,8 +74,8 @@ class UserController extends Controller
             $tokenResult = $user->createToken('authToken')->plainTextToken;
 
             return ResponseFormatter::success([
-                'access_token' => $tokenResult,
-                'token_type' => 'Bearer',
+                'accessToken' => $tokenResult,
+                'tokenType' => 'Bearer',
                 'user' => $user
             ], 'User logged in successfully');
         } catch (Exception $error) {
@@ -89,5 +89,12 @@ class UserController extends Controller
     public function fetch(Request $request)
     {
         return ResponseFormatter::success($request->user(), 'Data profile user successfully fetched');
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return ResponseFormatter::success(200, 'Your account has been logged out');
     }
 }
