@@ -24,6 +24,8 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/logout', [UserController::class, 'logout']);
+
     Route::get('/user', [UserController::class, 'fetch']);
 
     Route::post('/kelas', [KelasController::class, 'store']);
