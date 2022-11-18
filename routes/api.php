@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/bk/tambah-pelanggaran', [DaftarPelanggaranController::class, 'addPelanggaran']);
     Route::get('/bk/daftar-pelanggaran', [DaftarPelanggaranController::class, 'allPelanggaran']);
+    Route::post('/upload-kisi-kisi', [KisiKisiController::class, 'store']);
 });
 
 Route::get('/kisi-kisi', [KisiKisiController::class, 'index']);
-Route::post('/upload-kisi-kisi', [KisiKisiController::class, 'store']);
