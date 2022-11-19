@@ -28,6 +28,16 @@ class KisiKisiController extends Controller
      */
     public function create(Request $request)
     {
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $files = $request->file('fileMapel');
         $newName = $request->input('slug') . '.pdf';
         $files[0]->move(public_path('/assets/kisi-kisi/pas2022/'), $newName);
@@ -40,17 +50,6 @@ class KisiKisiController extends Controller
         ]);
 
         return 'Kisi-kisi uploaded successfully!';
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
