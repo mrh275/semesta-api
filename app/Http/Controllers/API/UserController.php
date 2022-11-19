@@ -71,7 +71,7 @@ class UserController extends Controller
                 throw new \Exception('Invalid credentials');
             }
 
-            $tokenResult = $user->createToken('authToken')->plainTextToken;
+            $tokenResult = $user->createToken('accessToken')->plainTextToken;
 
             return ResponseFormatter::success([
                 'accessToken' => $tokenResult,
