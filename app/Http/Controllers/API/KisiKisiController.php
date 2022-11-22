@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Models\KisiKisi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use Exception;
+use Illuminate\Support\Facades\File;
 
 class KisiKisiController extends Controller
 {
@@ -94,15 +95,17 @@ class KisiKisiController extends Controller
      */
     public function removeKisiKisi(Request $request)
     {
-        // $data = [
-        //     'item' => $request->input('slugItem'),
-        //     'message' => 'Data berhasil dihapus'
-        // ];
         $item = $request->input('slugItem');
         $data = KisiKisi::where(['slug' => $item])->first();
-        $data->delete();
-        $itemDelete = 'Kisi-kisi ' . $data->mapel . ' ' . $data->kelas . ' berhasil dihapus';
-
+        try {
+            if (File::exists('assets/kisi-kisi/pas2022/' . $item . '.pdf')) {
+                File::delete(public_path('assets/kisi-kisi/pas2022/' . $item . '.pdf'));
+                $data->delete();
+                $itemDelete = 'Kisi-kisi ' . $data->mapel . ' ' . $data->kelas . ' berhasil dihapus';
+            }
+        } catch (Exception $e) {
+            $itemDelete = $e->getMessage();
+        }
         return json_encode($itemDelete);
     }
 
