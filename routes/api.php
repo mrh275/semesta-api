@@ -47,3 +47,4 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/kisi-kisi', [KisiKisiController::class, 'index']);
 Route::post('/upload-kisi-kisi', [KisiKisiController::class, 'create']);
 Route::get('/download-kisi-kisi', [KisiKisiController::class, 'download']);
+Route::post('/hapus-kisi-kisi', [KisiKisiController::class, 'removeKisiKisi']);
