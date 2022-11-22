@@ -92,9 +92,18 @@ class KisiKisiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function removeKisiKisi(Request $request)
     {
-        //
+        // $data = [
+        //     'item' => $request->input('slugItem'),
+        //     'message' => 'Data berhasil dihapus'
+        // ];
+        $item = $request->input('slugItem');
+        $data = KisiKisi::where(['slug' => $item])->first();
+        $data->delete();
+        $itemDelete = 'Kisi-kisi ' . $data->mapel . ' ' . $data->kelas . ' berhasil dihapus';
+
+        return json_encode($itemDelete);
     }
 
     public function download(Request $request)
