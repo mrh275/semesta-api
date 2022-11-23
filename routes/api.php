@@ -42,9 +42,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/bk/tambah-pelanggaran', [DaftarPelanggaranController::class, 'addPelanggaran']);
     Route::get('/bk/daftar-pelanggaran', [DaftarPelanggaranController::class, 'allPelanggaran']);
     Route::post('/upload-kisi-kisi', [KisiKisiController::class, 'store']);
+    Route::post('/hapus-kisi-kisi', [KisiKisiController::class, 'removeKisiKisi']);
 });
 
 Route::get('/kisi-kisi', [KisiKisiController::class, 'index']);
 Route::post('/upload-kisi-kisi', [KisiKisiController::class, 'create']);
 Route::get('/download-kisi-kisi', [KisiKisiController::class, 'download']);
-Route::post('/hapus-kisi-kisi', [KisiKisiController::class, 'removeKisiKisi']);
