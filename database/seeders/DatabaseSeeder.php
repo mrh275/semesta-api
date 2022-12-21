@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Biodata;
+use App\Models\DataSekolah;
 use App\Models\KisiKisi;
 use App\Models\TahunLulus;
 use App\Models\ListSekolahAsal;
@@ -48,5 +49,6 @@ class DatabaseSeeder extends Seeder
         ListSekolahAsal::factory(12)->create();
         Biodata::factory(100)->create();
         // KisiKisi::factory(10)->create();
+        DataSekolah::factory(1)->create();
     }
 }
