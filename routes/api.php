@@ -6,6 +6,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\KelasController;
 use App\Http\Controllers\API\BiodataController;
 use App\Http\Controllers\API\DaftarPelanggaranController;
+use App\Http\Controllers\API\DataSekolahController;
 use App\Http\Controllers\API\KisiKisiController;
 use App\Http\Controllers\API\PeraturanController;
 
@@ -27,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [UserController::class, 'logout']);
 
     Route::get('/user', [UserController::class, 'fetch']);
+
+    Route::get('/data-sekolah', [DataSekolahController::class, 'getDataSekolah']);
 
     Route::post('/kelas', [KelasController::class, 'store']);
     Route::get('/kelas', [KelasController::class, 'getKelas']);
