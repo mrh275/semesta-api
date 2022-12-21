@@ -29,7 +29,7 @@ class CreateBiodatasTable extends Migration
             $table->string('asal_sekolah');
             $table->integer('tahun_lulus');
             $table->date('diterima_tanggal');
-            $table->string('diterima_dikelas');
+            $table->integer('diterima_dikelas');
             $table->text('alamat');
             $table->string('rt');
             $table->string('rw');
