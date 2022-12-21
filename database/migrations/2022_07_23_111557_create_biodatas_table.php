@@ -14,20 +14,23 @@ class CreateBiodatasTable extends Migration
     public function up()
     {
         Schema::create('biodatas', function (Blueprint $table) {
-            $table->id();
-            $table->string('noreg_ppdb')->unique();
-            $table->integer('jalur_pendaftaran');
-            $table->bigInteger('nisn')->unique();
+            $table->id()->primary();
+            $table->string('nisn')->unique();
+            $table->bigInteger('nis')->unique()->nullable();
             $table->bigInteger('nik')->unique();
             $table->string('nama');
             $table->string('jenis_kelamin');
+            $table->int('tingkat');
+            $table->int('rombel_id')->nullable();
+            $table->int('ekskul_id')->nullable();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
+            $table->string('agama');
             $table->string('asal_sekolah');
             $table->integer('tahun_lulus');
-            $table->string('kelas');
-            $table->string('alamat');
-            $table->string('dusun');
+            $table->date('diterima_tanggal');
+            $table->string('diterima_dikelas');
+            $table->text('alamat');
             $table->string('rt');
             $table->string('rw');
             $table->string('desa');
@@ -35,11 +38,10 @@ class CreateBiodatasTable extends Migration
             $table->string('kabupaten');
             $table->string('provinsi');
             $table->integer('kode_pos');
-            $table->integer('is_verified')->default(0);
-            $table->integer('is_accepted')->default(0);
+            $table->string('phone');
+            $table->string('status_anak');
+            $table->int('anak_ke');
             $table->integer('is_graduated')->default(0);
-            $table->integer('kelas_id')->nullable();
-            $table->integer('tahun_lulus_id')->nullable();
             $table->timestamps();
         });
     }
