@@ -26,6 +26,7 @@ class DataSekolahFactory extends Factory
             'kecamatan' => 'Rawamerta',
             'kota' => 'Karawang',
             'provinsi' => 'Jawa Barat',
+            'pos' => 41374,
             'phone' => '085155288214',
             'email' => 'sman1rwt@gmail.com',
             'website' => 'https://sman1rawamerta.sch.id',
