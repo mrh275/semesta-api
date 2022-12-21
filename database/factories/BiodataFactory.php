@@ -14,14 +14,19 @@ class BiodataFactory extends Factory
     public function definition()
     {
         return [
-            'noreg_ppdb' => 'PPDB-' . date('y') . date('y') + 1 . '-' . $this->faker->unique()->numberBetween(10000, 99999),
-            'jalur_pendaftaran' => $this->faker->numberBetween(1, 7),
             'nisn' => $this->faker->unique()->numberBetween(1000000000, 9999999999),
+            'nis' => $this->faker->unique()->numberBetween(1000000000, 9999999999),
             'nik' => $this->faker->unique()->numberBetween(1000000000000000, 9999999999999999),
             'nama' => $this->faker->name,
             'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
+            'tingkat' => $this->faker->numberBetween(10, 12),
+            'rombel_id' => $this->faker->numberBetween(1, 4),
+            'ekskul_id' => $this->faker->numberBetween(1, 5),
             'tempat_lahir' => $this->faker->city,
             'tanggal_lahir' => $this->faker->date('Y-m-d'),
+            'agama' => $this->faker->randomElement(['Islam', 'Kristen', 'Budha', 'Hindu']),
+            'asal_sekolah' => $this->faker->randomElement(['SMPN 1 Rawamerta', 'SMPN 2 Rawamerta', 'SMPN Satu Atap 1 Rawamerta']),
+            'tahun_lulus' => $this->faker->numberBetween(2020, 2022),
             'asal_sekolah' => 'SMPN 1 Kota Cimahi',
             'tahun_lulus' => $this->faker->numberBetween(2010, 2020),
             'kelas' => $this->faker->randomElement(['9A', '9B', '9C']),
