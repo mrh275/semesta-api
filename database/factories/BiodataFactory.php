@@ -29,9 +29,9 @@ class BiodataFactory extends Factory
             'tahun_lulus' => $this->faker->numberBetween(2020, 2022),
             'asal_sekolah' => 'SMPN 1 Kota Cimahi',
             'tahun_lulus' => $this->faker->numberBetween(2010, 2020),
-            'kelas' => $this->faker->randomElement(['9A', '9B', '9C']),
+            'diterima_tanggal' => $this->faker->date(),
+            'diterima_dikelas' => $this->faker->numberBetween(10, 12),
             'alamat' => $this->faker->address,
-            'dusun' => $this->faker->streetName,
             'rt' => $this->faker->numberBetween(1, 10),
             'rw' => $this->faker->numberBetween(1, 10),
             'desa' => $this->faker->city,
@@ -39,6 +39,10 @@ class BiodataFactory extends Factory
             'kabupaten' => $this->faker->city,
             'provinsi' => $this->faker->city,
             'kode_pos' => $this->faker->numberBetween(10000, 99999),
+            'phone' => $this->faker->phoneNumber(),
+            'status_anak' => $this->faker->randomElement(['Anak kandung', 'Anak tiri']),
+            'anak_ke' => $this->faker->numberBetween(1, 5),
+            'is_graduated' => $this->faker->numberBetween(0, 1),
         ];
     }
 }
