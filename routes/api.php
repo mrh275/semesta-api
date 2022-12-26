@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/kelas', [KelasController::class, 'getKelas']);
 
     Route::get('/siswa', [BiodataController::class, 'getAllSiswa']);
+    Route::post('/siswa', [BiodataController::class, 'updateDataSiswa']);
 
     Route::post('/bk/tambah-kategori-peraturan', [PeraturanController::class, 'addCategoryPeraturan']);
     Route::get('/bk/kategori-peraturan', [PeraturanController::class, 'allCategory']);
