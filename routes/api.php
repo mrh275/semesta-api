@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'fetch']);
 
     Route::get('/data-sekolah', [DataSekolahController::class, 'getDataSekolah']);
+    Route::post('/data-sekolah', [DataSekolahController::class, 'updateDataSekolah']);
 
     Route::post('/kelas', [KelasController::class, 'store']);
     Route::get('/kelas', [KelasController::class, 'getKelas']);
