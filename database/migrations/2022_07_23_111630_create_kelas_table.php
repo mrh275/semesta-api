@@ -17,7 +17,7 @@ class CreateKelasTable extends Migration
             $table->id();
             $table->integer('rombel_type');
             $table->integer('kurikulum_type');
-            $table->string('kurikulum_rombel');
+            $table->integer('kurikulum_rombel');
             $table->string('nama_kelas');
             $table->integer('tingkat');
             $table->integer('jurusan')->nullable();
