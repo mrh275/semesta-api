@@ -18,7 +18,12 @@ return new class extends Migration
             $table->string('nama_guru');
             $table->bigInteger('nip')->nullable();
             $table->bigInteger('nuptk')->nullable();
+            $table->string('gelar_depan');
+            $table->string('gelar_belakang');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->integer('status_ptk');
+            $table->text('alamat');
+            $table->string('phone');
             $table->timestamps();
         });
     }
