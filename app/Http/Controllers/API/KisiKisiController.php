@@ -41,16 +41,34 @@ class KisiKisiController extends Controller
     {
         $files = $request->file('fileMapel');
         $newName = $request->input('slug') . '.pdf';
-        $files[0]->move(public_path('/assets/kisi-kisi/pas2022/'), $newName);
+        $tipeUjian = $request->input('tipe_ujian');
+        $tahunPelajaran = date("Y");
+        $files->move(public_path('/assets/kisi-kisi/' . strtolower($tipeUjian) . $tahunPelajaran . '/'), $newName);
 
-        KisiKisi::create([
-            'mapel' => $request->input('mapel'),
-            'kelas' => $request->input('kelas'),
-            'status' => $request->input('status'),
-            'slug' => $request->input('slug')
-        ]);
+        try {
+            KisiKisi::create([
+                'mapel' => $request->input('mapel'),
+                'kelas' => $request->input('kelas'),
+                'status' => $request->input('status'),
+                'slug' => $request->input('slug'),
+                'tipe_ujian' => $tipeUjian,
+            ]);
 
-        return 'Kisi-kisi uploaded successfully!';
+            return response()->json([
+                'message' => 'Kisi-kisi berhasil ditambahkan',
+                'error' => false,
+                'data' => $request->all()
+            ]);
+        } catch (Exception $error) {
+            return response()->json([
+                'message' => $error->getMessage(),
+                'error' => $error->getCode()
+            ]);
+        }
+
+        // return response()->json([
+        //     'file' => $files
+        // ]);
     }
 
     /**
@@ -96,10 +114,11 @@ class KisiKisiController extends Controller
     public function removeKisiKisi(Request $request)
     {
         $item = $request->input('slugItem');
+        $tipeUjian = $request->input('tipeUjian');
         $data = KisiKisi::where(['slug' => $item])->first();
         try {
-            if (File::exists('assets/kisi-kisi/pas2022/' . $item . '.pdf')) {
-                File::delete(public_path('assets/kisi-kisi/pas2022/' . $item . '.pdf'));
+            if (File::exists('assets/kisi-kisi/' . strtolower($tipeUjian) . date('Y') . '/' . $item . '.pdf')) {
+                File::delete(public_path('assets/kisi-kisi/' . strtolower($tipeUjian) . date('Y') . '/' . $item . '.pdf'));
                 $data->delete();
                 $itemDelete = 'Kisi-kisi ' . $data->mapel . ' ' . $data->kelas . ' berhasil dihapus';
             }
@@ -112,8 +131,9 @@ class KisiKisiController extends Controller
     public function download(Request $request)
     {
         $kisiKisi = $request->input('itemName');
+        $tipeUjian = $request->input('tipeUjian');
 
-        $fileName = public_path('/assets/kisi-kisi/pas2022/' . $kisiKisi . '.pdf');
+        $fileName = public_path('/assets/kisi-kisi/' . strtolower($tipeUjian) . date('Y') . '/' . $kisiKisi . '.pdf');
 
         $headers = array(
             'Content-Type' => 'application/pdf'
