@@ -125,7 +125,7 @@ class KisiKisiController extends Controller
         } catch (Exception $e) {
             $itemDelete = $e->getMessage();
         }
-        return json_encode($itemDelete);
+        return response()->json($itemDelete);
     }
 
     public function download(Request $request)
