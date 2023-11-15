@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('mapel');
             $table->string('kelas');
+            $table->string('tipe_ujian');
             $table->integer('status');
             $table->string('slug');
             $table->timestamps();
